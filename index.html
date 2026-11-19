@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MintDesk — Frankenstein Lab for BSC Mint Triage</title>
+  <meta name="description" content="MintDesk stitches deterministic BSC contract verification, Jira-style triage tickets, and a Kiro Crew watch agent into one solo-builder ops console. Read-only: no wallet connection, no signing, no transactions." />
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🧪 Mint<span>Desk</span></h1>
+    <p class="tagline">Frankenstein lab for solo builders: verify a BSC contract, triage it like a Jira ticket, let the Crew watch it. Read-only — no wallet, no signing, no transactions.</p>
+    <p>
+      <span class="badge">Kiroween 2026 · Frankenstein</span>
+      <span class="badge">BSC · read-only</span>
+      <span class="badge">Built with Kiro</span>
+    </p>
+  </header>
+  <main>
+    <section id="verify">
+      <h2>1 · Verify a contract</h2>
+      <p class="hint">Paste a BSC contract address. MintDesk reads bytecode, name/symbol/supply/owner and the Sourcify source match, then scores it 0–100.</p>
+      <form id="verify-form">
+        <label for="contract-input">BSC contract address</label>
+        <input id="contract-input" class="mono" placeholder="0x…" autocomplete="off" spellcheck="false" />
+        <div class="row">
+          <div>
+            <button type="submit" id="verify-btn">Verify contract</button>
+            <button type="button" class="ghost" id="verify-demo">Try PIXIU (demo)</button>
+          </div>
+        </div>
+      </form>
+      <p id="verify-status" class="hint" aria-live="polite"></p>
+      <div id="verify-result" class="hidden">
+        <div class="verdict" id="verdict"></div>
+        <div class="scorebar"><div id="score-fill"></div></div>
+        <p id="score-text" class="hint"></p>
+        <h3>Facts</h3>
+        <table id="facts-table"></table>
+        <h3>Checks</h3>
+        <table id="checks-table"></table>
+        <button type="button" id="to-ticket-btn">Create triage ticket from this result</button>
+        <button type="button" class="ghost" id="watch-add-btn">Add to watchlist</button>
+      </div>
+    </section>
+
+    <section id="agentid">
+      <h2>2 · Verify an Agent ID</h2>
+      <p class="hint">Read-only <code>handleOf()</code> call to the Agent ID registry. Checks that a wallet actually owns the claimed handle.</p>
+      <form id="agentid-form">
+        <div class="row">
+          <div>
+            <label for="handle-input">Agent ID handle</label>
+            <input id="handle-input" placeholder="astrajingga0704" autocomplete="off" spellcheck="false" />
+          </div>
+          <div>
+            <label for="wallet-input">Wallet address</label>
+            <input id="wallet-input" class="mono" placeholder="0x…" autocomplete="off" spellcheck="false" />
+          </div>
+        </div>
+        <button type="submit" id="agentid-btn">Verify Agent ID</button>
+        <button type="button" class="ghost" id="agentid-demo">Use demo example</button>
+      </form>
+      <p id="agentid-result" class="hint" aria-live="polite"></p>
+    </section>
+
+    <section id="triage">
+      <h2>3 · Triage queue</h2>
+      <p class="hint">Tickets persist in your browser (localStorage). Demo tickets are labelled DEMO — delete them when you start real triage.</p>
+      <div class="filters">
+        <select id="filter-priority" aria-label="Filter by priority">
+          <option value="">All priorities</option>
+          <option>P0</option><option>P1</option><option>P2</option><option>P3</option>
+        </select>
+        <select id="filter-status" aria-label="Filter by status">
+          <option value="">All statuses</option>
+          <option value="queue">Queue</option>
+          <option value="investigating">Investigating</option>
+          <option value="ready">Ready to mint</option>
+          <option value="skipped">Skipped</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+      <div id="ticket-list"></div>
+      <h3>New manual ticket</h3>
+      <form id="manual-form">
+        <label for="manual-title">Title</label>
+        <input id="manual-title" placeholder="e.g. Check the new free mint from …" />
+        <div class="row">
+          <div>
+            <label for="manual-contract">Contract (optional)</label>
+            <input id="manual-contract" class="mono" placeholder="0x…" autocomplete="off" spellcheck="false" />
+          </div>
+          <div>
+            <label for="manual-priority">Priority</label>
+            <select id="manual-priority"><option>P0</option><option>P1</option><option selected>P2</option><option>P3</option></select>
+          </div>
+        </div>
+        <label for="manual-notes">Notes</label>
+        <textarea id="manual-notes" rows="2"></textarea>
+        <button type="submit">Add ticket</button>
+      </form>
+    </section>
+
+    <section id="watchlist">
+      <h2>4 · Watchlist</h2>
+      <p class="hint">Contracts you want re-checked later. Re-check runs the same deterministic verification and updates the score in place. The Kiro Crew watch agent (see <code>.kiro/crew/watch-agent.md</code>) is the automation spec for this list — it polls, it never transacts.</p>
+      <div id="watch-list"></div>
+    </section>
+  </main>
+  <footer>
+    <p>MintDesk is a Kiroween 2026 entry (Frankenstein category). Built fresh for the hackathon with Kiro; verification patterns were inspired by the author's earlier MintGuard work — no MintGuard code was copied. All on-chain reads use public BSC RPC endpoints and Sourcify; nothing here connects a wallet, signs, or sends a transaction. Demo data is labelled DEMO.</p>
+  </footer>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

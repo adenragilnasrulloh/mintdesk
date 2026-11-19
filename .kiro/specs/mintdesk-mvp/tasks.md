@@ -1,0 +1,26 @@
+# MintDesk MVP — Tasks
+
+- [x] 1. Scaffold Vite static app (package.json, vite.config.js, index.html)
+  - [x] 1.1 Kiro CLI installed and version recorded (3.5.0)
+  - [x] 1.2 Fresh codebase — no MintGuard files copied
+- [x] 2. Shared BSC helpers (`src/bsc.js`)
+  - [x] 2.1 RPC with endpoint failover + 15s timeout
+  - [x] 2.2 ABI decoders (address / uint256 / string)
+- [x] 3. Deterministic verifier (`src/verifier.js`)
+  - [x] 3.1 Bytecode, name/symbol/supply/owner reads
+  - [x] 3.2 Sourcify v2 status + source scan for risky functions
+  - [x] 3.3 Fixed scoring + SAFE/CAUTION/DANGEROUS thresholds
+- [x] 4. Agent ID check (`src/agentid.js`, handleOf read-only)
+- [x] 5. Triage tickets (`src/triage.js` + UI in `src/main.js`)
+  - [x] 5.1 Auto-ticket from verification, priority from verdict
+  - [x] 5.2 Manual tickets, status/priority, checklist, notes, delete
+  - [x] 5.3 localStorage persistence + 3 labelled DEMO seed tickets
+- [x] 6. Watchlist (add / re-check / remove, localStorage)
+- [x] 7. UI styling (dark lab, green accent)
+- [x] 8. Smoke test (`test/smoke.mjs`): PIXIU, KIJIN, EOA, invalid address
+- [ ] 9. Manual steps for Eaglee (not part of this build):
+  - [ ] 9.1 `kiro-cli login` via her own browser / GitHub account
+  - [ ] 9.2 Create the public GitHub repo and push this code
+  - [ ] 9.3 Join the hackathon on Devpost
+  - [ ] 9.4 Decide on the 4,000-credit request (needs KTP/selfie via Didit) or use Kiro Free
+  - [ ] 9.5 Record demo video (< 3 min) and submit before Sat 5 Dec 2026 05:00 WIB

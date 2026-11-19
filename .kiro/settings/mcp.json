@@ -1,0 +1,1 @@
+{"mcpServers":{"bsc-read":{"args":["-y","@modelcontextprotocol/server-fetch"],"command":"npx","description":"Fetch-only MCP helper for read-only lookups (BSC RPC JSON-RPC posts and Sourcify API GETs). No credentials, no wallet, no signing — reads only.","env":{}}}}

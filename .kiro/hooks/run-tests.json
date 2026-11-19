@@ -1,0 +1,1 @@
+{"hooks":[{"command":"npm test && npm run build","description":"After any source file in src/ or test/ is saved, run the Node smoke test and a production build so regressions are caught immediately.","event":"onFileSave","match":["src/**/*.js","test/**/*.mjs","index.html"],"name":"run-tests-on-save","timeoutSeconds":180}]}
