@@ -1,10 +1,11 @@
 # MintDesk — Kiroween 2026 Submission Draft (DO NOT SUBMIT YET)
 
-Status: draft updated 23 Nov 2026 ~19:25 WIB. Repo URL filled in, demo
-video READY (local file, not yet uploaded to YouTube). Still TODO:
-live-app URL (deploy — see Deploy section), YouTube demo link (upload
-by Eaglee), blog-post URL (optional). Nothing here has been submitted
-to Devpost, and nothing has been pushed to the remote.
+Status: draft updated 23 Nov 2026 ~19:30 WIB. Repo pushed (remote
+main a5ff421), live app VERIFIED at
+https://adenragilnasrulloh.github.io/mintdesk/, demo video READY
+(local file, not yet uploaded to YouTube). Still TODO: YouTube demo
+link (upload by Eaglee), blog-post URL (optional). Nothing here has
+been submitted to Devpost.
 
 ## Category
 Frankenstein — stitch together a chimera of technologies into one app.
@@ -73,10 +74,12 @@ the browser against public BSC RPC endpoints and Sourcify.
 
 ## Links
 - Public GitHub repo: https://github.com/adenragilnasrulloh/mintdesk
-  (public, main branch; `.kiro` at root, Apache-2.0 license. Local
-  HEAD 7a669a9 = origin/main as of 23 Nov; the demo-video commit below
-  is local-only until Eaglee pushes.)
-- Live app URL: TODO — see Deploy section below.
+  (public, main branch; `.kiro` at root, Apache-2.0 license.
+  Remote main = a5ff421 as of 23 Nov — includes the demo video
+  (f9211e9) and the Vite base fix for Pages.)
+- Live app URL: https://adenragilnasrulloh.github.io/mintdesk/
+  — VERIFIED LIVE 23 Nov: HTTP 200, title "MintDesk — Frankenstein
+  Lab for BSC Mint Triage", JS + CSS assets 200.
 - Demo video (<3 min, public YouTube): TODO — upload
   `demo-video.mp4` (local path below) to Eaglee's YouTube channel as
   Public, then paste the link here.
@@ -87,26 +90,30 @@ the browser against public BSC RPC endpoints and Sourcify.
     Agent ID `astrajingga0704` verified on-chain, watchlist re-check,
     and the real `.kiro` spec on the public GitHub repo. English
     voiceover, no music, no third-party trademarks.
-  - Local git commit: "Demo video + submission draft refresh"
-    (includes demo-video.mp4 + this draft). NOT pushed.
+  - Pushed to remote main 23 Nov (commit f9211e9).
 - Blog post URL (Bonus Blog): TODO (optional)
 
-## Deploy (recommended: GitHub Pages — investigated, not yet done)
+## Deploy — DONE 23 Nov (GitHub Pages, gh-pages branch)
+- Live: https://adenragilnasrulloh.github.io/mintdesk/ (HTTP 200
+  verified 23 Nov; JS + CSS assets 200; title correct).
+- Method: the built `dist/` (Vite, base `/mintdesk/`) is published
+  on branch `gh-pages` (commit daf5ea6, built from main a5ff421);
+  Pages source = gh-pages branch, path `/`, build_type legacy.
+  Re-deploy after any app change by rebuilding and re-pushing the
+  `gh-pages` branch (script: /tmp/push_gh_pages.py — not in repo).
+- Blocker found 23 Nov: the GitHub API credential used from this VM
+  has NO `workflow` scope, so `.github/workflows/pages.yml` CANNOT
+  be pushed via the Data API (create-tree and Contents API both
+  return 404 for paths under `.github/workflows/`), and plain HTTPS
+  `git push` also fails ("Password authentication is not supported
+  for Git operations"). The workflow file is kept locally at
+  `.github/workflows/pages.yml` (untracked) — add it via the GitHub
+  web UI (logged in as adenragilnasrulloh) if auto-deploy on push
+  to main is wanted; until then, redeploy via the gh-pages branch.
 - `firebase` CLI is NOT installed on this VM and no Firebase login
   is available here, so Firebase Hosting (the MintGuard route) would
   need Eaglee to install + log in with her Google account
-  (takt9748) — more moving parts.
-- Recommended: GitHub Pages from this same public repo — free, no
-  new account, no billing. Exact path (Eaglee runs this, or approves
-  it): in the repo, add `.github/workflows/pages.yml` (GitHub's
-  "Static HTML" Pages workflow, build step `npm ci && npm run build`,
-  artifact `dist/`), push to main, then in repo Settings → Pages
-  confirm "GitHub Actions" as the source. The live URL becomes
-  `https://adenragilnasrulloh.github.io/mintdesk/`.
-- Fallback: Firebase Hosting — `npm i -g firebase-tools`,
-  `firebase login` (Eaglee's Google account), `firebase init hosting`
-  (public dir `dist`, single-page app: no), `firebase deploy`.
-  Reuses the MintGuard pattern but needs her login + a project.
+  (takt9748) — not needed now that Pages is live.
 
 ## Pre-existing code disclosure
 MintDesk is a new codebase written fresh for Kiroween 2026 (30 Oct–
