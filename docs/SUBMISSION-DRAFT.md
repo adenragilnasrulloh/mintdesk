@@ -1,8 +1,10 @@
 # MintDesk — Kiroween 2026 Submission Draft (DO NOT SUBMIT YET)
 
-Status: draft prepared 19 Nov 2026 ~21:40 WIB. Submission needs Eaglee's
-approval + her Devpost account + public GitHub repo URL + live app URL +
-YouTube demo link. Nothing here has been submitted.
+Status: draft updated 23 Nov 2026 ~19:25 WIB. Repo URL filled in, demo
+video READY (local file, not yet uploaded to YouTube). Still TODO:
+live-app URL (deploy — see Deploy section), YouTube demo link (upload
+by Eaglee), blog-post URL (optional). Nothing here has been submitted
+to Devpost, and nothing has been pushed to the remote.
 
 ## Category
 Frankenstein — stitch together a chimera of technologies into one app.
@@ -69,13 +71,42 @@ the browser against public BSC RPC endpoints and Sourcify.
   testable — the smoke test asserts real live results (PIXIU 39
   CAUTION, KIJIN 44 CAUTION, EOA 100 DANGEROUS).
 
-## Links (fill in at submit time)
-- Public GitHub repo: TODO — create under adenragilnasrulloh, push
-  ~/workspace/kiroween/mintdesk/ (`.kiro` is NOT gitignored)
-- Live app URL: TODO — deploy dist/ (Firebase Hosting like MintGuard,
-  or GitHub Pages)
-- Demo video (<3 min, public YouTube): TODO — see DEMO-SCRIPT.md
+## Links
+- Public GitHub repo: https://github.com/adenragilnasrulloh/mintdesk
+  (public, main branch; `.kiro` at root, Apache-2.0 license. Local
+  HEAD 7a669a9 = origin/main as of 23 Nov; the demo-video commit below
+  is local-only until Eaglee pushes.)
+- Live app URL: TODO — see Deploy section below.
+- Demo video (<3 min, public YouTube): TODO — upload
+  `demo-video.mp4` (local path below) to Eaglee's YouTube channel as
+  Public, then paste the link here.
+  - READY: `~/workspace/kiroween/mintdesk/demo-video.mp4` —
+    105 s (1:45), 1920×1080, h264 + AAC, 5.7 MB. Recorded 23 Nov 2026
+    from the production build served locally: live PIXIU verification
+    (CAUTION 39/100), auto triage ticket + checklist/note/status,
+    Agent ID `astrajingga0704` verified on-chain, watchlist re-check,
+    and the real `.kiro` spec on the public GitHub repo. English
+    voiceover, no music, no third-party trademarks.
+  - Local git commit: "Demo video + submission draft refresh"
+    (includes demo-video.mp4 + this draft). NOT pushed.
 - Blog post URL (Bonus Blog): TODO (optional)
+
+## Deploy (recommended: GitHub Pages — investigated, not yet done)
+- `firebase` CLI is NOT installed on this VM and no Firebase login
+  is available here, so Firebase Hosting (the MintGuard route) would
+  need Eaglee to install + log in with her Google account
+  (takt9748) — more moving parts.
+- Recommended: GitHub Pages from this same public repo — free, no
+  new account, no billing. Exact path (Eaglee runs this, or approves
+  it): in the repo, add `.github/workflows/pages.yml` (GitHub's
+  "Static HTML" Pages workflow, build step `npm ci && npm run build`,
+  artifact `dist/`), push to main, then in repo Settings → Pages
+  confirm "GitHub Actions" as the source. The live URL becomes
+  `https://adenragilnasrulloh.github.io/mintdesk/`.
+- Fallback: Firebase Hosting — `npm i -g firebase-tools`,
+  `firebase login` (Eaglee's Google account), `firebase init hosting`
+  (public dir `dist`, single-page app: no), `firebase deploy`.
+  Reuses the MintGuard pattern but needs her login + a project.
 
 ## Pre-existing code disclosure
 MintDesk is a new codebase written fresh for Kiroween 2026 (30 Oct–
