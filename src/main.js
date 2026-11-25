@@ -12,6 +12,7 @@ import {
   ticketFromVerification,
 } from "./triage.js";
 import { isAddress } from "./bsc.js";
+import { ensureKey, explainResult } from "./openrouter.js";
 
 const TICKETS_KEY = "mintdesk.tickets.v1";
 const WATCH_KEY = "mintdesk.watchlist.v1";
@@ -136,6 +137,25 @@ $("watch-add-btn").addEventListener("click", () => {
     });
     save(WATCH_KEY, watchlist);
     renderWatchlist();
+  }
+});
+
+// ---------- Explain with AI (OpenRouter) ----------
+// Uses the visitor's own OpenRouter key (localStorage only, never in code).
+$("explain-btn").addEventListener("click", async () => {
+  if (!lastResult) return;
+  const btn = $("explain-btn");
+  const out = $("explain-out");
+  btn.disabled = true;
+  out.textContent = "Asking OpenRouter…";
+  try {
+    ensureKey();
+    const { text } = await explainResult(lastResult);
+    out.textContent = text;
+  } catch (err) {
+    out.innerHTML = `<span class="error">${esc(err.message || err)}</span>`;
+  } finally {
+    btn.disabled = false;
   }
 });
 
